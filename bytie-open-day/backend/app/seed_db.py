@@ -1,9 +1,9 @@
 import asyncio
 from motor.motor_asyncio import AsyncIOMotorClient
-import os
+from app.config import settings
 
-MONGODB_URI = os.getenv("MONGODB_URI", "mongodb://localhost:27017")
-DB_NAME = os.getenv("MONGODB_DB_NAME", "tech_quiz_db")
+MONGODB_URI = settings.MONGODB_URI
+DB_NAME = "tech_quiz_db"
 
 # 1. JEU ZOOM (20 éléments)
 ZOOM_ROUNDS = [
