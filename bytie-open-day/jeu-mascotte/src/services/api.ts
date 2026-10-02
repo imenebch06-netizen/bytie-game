@@ -2,7 +2,7 @@
 export const API_ORIGIN = import.meta.env.VITE_API_ORIGIN ?? "http://localhost:8000";
 const API_URL = `${API_ORIGIN}/api/game`;
 
-
+ 
 export const resolveAssetUrl = (path: string): string =>
   /^(https?:|data:|blob:)/.test(path) ? path : `${API_ORIGIN}${path.startsWith("/") ? "" : "/"}${path}`;
 

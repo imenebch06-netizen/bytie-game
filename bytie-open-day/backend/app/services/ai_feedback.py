@@ -39,7 +39,7 @@ def _build_body(p: AIAnalysisRequest, low_thinking: bool) -> dict:
     total = p.zoom_score + p.connections_score + p.timeline_score
     user_prompt = f"Player results:\n{lines}\nTotal: {total}/300\nRank: {p.rank_title}"
 
-    config: dict = {"temperature": 0.8, "maxOutputTokens": 2048}
+    config: dict = {"temperature": 0.8, "maxOutputTokens": 512}
     if low_thinking:
         # Les modèles Gemini 3 "réfléchissent" avant de répondre : on limite pour garder une réponse rapide
         config["thinkingConfig"] = {"thinkingLevel": "low"}

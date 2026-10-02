@@ -11,8 +11,8 @@ class Settings(BaseSettings):
 
     # Analyse de fin de partie générée par Gemini (clé à créer sur https://aistudio.google.com/apikey)
     GEMINI_API_KEY: str = ""
-    GEMINI_MODEL: str = "gemini-3.7-flash"  
-    GEMINI_TIMEOUT_SEC: float = 10.0
+    GEMINI_MODEL: str = "gemini-3.5-flash-lite"
+    GEMINI_TIMEOUT_SEC: float = 30.0
 
     model_config = SettingsConfigDict(
         env_file=BASE_DIR / ".env",  # lu depuis backend/.env quel que soit le dossier de lancement
