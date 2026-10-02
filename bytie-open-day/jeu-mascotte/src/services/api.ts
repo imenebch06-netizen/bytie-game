@@ -1,6 +1,18 @@
 
-const configuredApiOrigin = import.meta.env.VITE_API_ORIGIN ?? "https://bytie-game.onrender.com";
-export const API_ORIGIN = configuredApiOrigin.replace(/\/+$/, "");
+const DEFAULT_API_ORIGIN = "https://bytie-game.onrender.com";
+const configuredApiOrigin = import.meta.env.VITE_API_ORIGIN;
+const isLocalApiOrigin = (origin: string) => {
+  try {
+    return ["localhost", "127.0.0.1", "::1"].includes(new URL(origin).hostname);
+  } catch {
+    return false;
+  }
+};
+const useProductionFallback = import.meta.env.PROD
+  && configuredApiOrigin
+  && isLocalApiOrigin(configuredApiOrigin);
+export const API_ORIGIN = (useProductionFallback ? DEFAULT_API_ORIGIN : configuredApiOrigin ?? DEFAULT_API_ORIGIN)
+  .replace(/\/+$/, "");
 const API_URL = `${API_ORIGIN}/api/game`;
 
  
