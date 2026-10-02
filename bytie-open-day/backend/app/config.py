@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent  # dossier backend/
 
 
 class Settings(BaseSettings):
-    MONGODB_URI: str = "mongodb://localhost:27017"
+    MONGODB_URI: str = "mongodb+srv://imenebch06_db_user:a0b0L4trXKW3hlJj@cluster0.aebcunq.mongodb.net/?appName=Cluster0&compressors=zlib"
     PORT: int = 8000
 
     # Analyse de fin de partie générée par Gemini (clé à créer sur https://aistudio.google.com/apikey)

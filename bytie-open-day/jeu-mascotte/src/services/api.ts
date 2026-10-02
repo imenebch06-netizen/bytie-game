@@ -1,5 +1,6 @@
 
-export const API_ORIGIN = import.meta.env.VITE_API_ORIGIN ?? "http://localhost:8000";
+const configuredApiOrigin = import.meta.env.VITE_API_ORIGIN ?? "https://bytie-game.onrender.com";
+export const API_ORIGIN = configuredApiOrigin.replace(/\/+$/, "");
 const API_URL = `${API_ORIGIN}/api/game`;
 
  
