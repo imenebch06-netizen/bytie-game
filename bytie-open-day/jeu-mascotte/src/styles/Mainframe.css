@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@600;700;800&display=swap");
+
+.mf-root {
+  position: relative;
+  min-height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #3b82f6 0%, #6366f1 45%, #8b5cf6 100%);
+  font-family: "Nunito", "Segoe UI", system-ui, sans-serif;
+}
+.mf-halo { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+.mf-halo.blue { left: -8rem; top: 25%; width: 28rem; height: 28rem; background: rgba(191, 219, 254, 0.55); }
+.mf-halo.violet { right: -6rem; bottom: 2.5rem; width: 24rem; height: 24rem; background: rgba(196, 181, 253, 0.55); }
+
+.mf-content {
+  position: relative; z-index: 10; max-width: 80rem; margin: 0 auto;
+  min-height: 100vh; display: flex; align-items: center;
+  padding: 6rem 1.5rem 5rem;
+}
+.mf-grid { display: grid; width: 100%; align-items: center; gap: 2rem; grid-template-columns: 1fr; }
+@media (min-width: 768px) {
+  .mf-grid { grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.1fr); gap: 5rem; }
+  .mf-content { padding: 7rem 3rem 6rem; }
+}
+
+.mf-robot { display: flex; justify-content: center; filter: drop-shadow(0 10px 40px rgba(255, 255, 255, 0.5)); }
+@media (min-width: 768px) { .mf-robot { justify-content: flex-start; } }
+
+.mf-right {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: 1.75rem; max-width: 42rem;
+}
+@media (min-width: 768px) { .mf-right { align-items: flex-start; text-align: left; } }
+
+/* ============ Langage visuel commun : verre blanc, bords blancs, coins très arrondis ============ */
+
+/* ---------- BOUTON ---------- */
+.mf-btn-wrap { position: relative; display: inline-block; }
+.mf-btn-glow {
+  position: absolute; inset: -12px; border-radius: 999px;
+  background: linear-gradient(90deg, #93c5fd, #ffffff, #c4b5fd);
+  filter: blur(20px); opacity: 0.8;
+}
+.mf-btn {
+  position: relative; overflow: hidden; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 16px;
+  padding: 14px 52px 14px 16px; border-radius: 999px;
+  border: 2px solid #fff;
+  background: linear-gradient(180deg, #ffffff 0%, #e0e7ff 100%);
+  color: #4338ca;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  font-size: 1.85rem; font-weight: 800; letter-spacing: 0.01em; line-height: 1;
+  box-shadow: 0 6px 0 0 #a5b4fc, 0 22px 44px rgba(49, 46, 129, 0.45);
+  transition: box-shadow 0.2s, background 0.2s;
+}
+.mf-btn:hover { background: linear-gradient(180deg, #ffffff 0%, #ede9fe 100%); box-shadow: 0 6px 0 0 #818cf8, 0 26px 52px rgba(109, 40, 217, 0.5); }
+.mf-btn:focus-visible { outline: 4px solid rgba(255, 255, 255, 0.85); outline-offset: 5px; }
+.mf-btn-icon {
+  display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.45), 0 6px 14px rgba(79, 70, 229, 0.45);
+}
+.mf-btn-icon svg { width: 24px; height: 24px; fill: #fff; margin-left: 3px; transition: transform 0.25s; }
+.mf-btn:hover .mf-btn-icon svg { transform: scale(1.2); }
+.mf-btn-shine {
+  position: absolute; top: 0; bottom: 0; left: -60%; width: 35%;
+  background: rgba(255, 255, 255, 0.85); transform: skewX(-20deg);
+  transition: left 0.7s ease;
+}
+.mf-btn:hover .mf-btn-shine { left: 130%; }
+
+/* ---------- TITRE ---------- */
+.mf-title {
+  margin: 0; padding-bottom: 0.12em;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  font-size: clamp(3.2rem, 9vw, 6rem); font-weight: 800; line-height: 1;
+  background: linear-gradient(100deg, #ffffff 0%, #dbeafe 45%, #ddd6fe 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  filter: drop-shadow(0 4px 10px rgba(49, 46, 129, 0.5));
+}
+
+/* ---------- BULLE DE BYTIE ---------- */
+.mf-bubble {
+  position: relative; margin: 0; padding: 1.3rem 1.7rem;
+  border-radius: 28px;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  color: #fff; font-size: 1.3rem; font-weight: 700; line-height: 1.6;
+  box-shadow: 0 18px 40px rgba(49, 46, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  text-shadow: 0 2px 6px rgba(49, 46, 129, 0.45);
+}
+/* petite queue qui pointe vers Bytie (en haut sur mobile, à gauche sur PC) */
+.mf-bubble::before {
+  content: ""; position: absolute; top: -14px; left: 50%; margin-left: -12px;
+  width: 24px; height: 15px; background: rgba(255, 255, 255, 0.18);
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+@media (min-width: 768px) {
+  .mf-bubble::before {
+    top: 30px; left: -14px; margin-left: 0; width: 15px; height: 24px;
+    clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  }
+}
+.mf-bubble b {
+  font-weight: 800;
+  background: linear-gradient(transparent 62%, rgba(165, 180, 252, 0.7) 62%);
+  padding: 0 2px;
+}
+
+/* ---------- PASTILLES DES 3 JEUX ---------- */
+.mf-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; }
+@media (min-width: 768px) { .mf-pills { justify-content: flex-start; } }
+.mf-pill {
+  padding: 8px 20px; border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  color: #fff; font-size: 1rem; font-weight: 800; letter-spacing: 0.02em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}

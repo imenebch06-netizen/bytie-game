@@ -1,0 +1,19 @@
+# Secrets : ne jamais envoyer ces fichiers sur Git
+.env
+.env.*
+!.env.example
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+dist/
+
+# Système et journaux
+.DS_Store
+Thumbs.db
+*.log
