@@ -1,9 +1,4 @@
-/* ==========================================================================
-   gamesData.ts : données mockées + types des 3 mini-jeux
-   Les images vont dans  publicC:\\Users\\Admin\\Documents\\jeu-mascotte\\src\\logos\\  (ex : publicC:\\Users\\Admin\\Documents\\jeu-mascotte\\src\\logos\\apple.png)
-   ========================================================================== */
 
-/** Tableau de longueur fixe : utile pour forcer exactement 3 indices ou 4 options */
 export type Tuple3<T> = [T, T, T];
 export type Tuple4<T> = [T, T, T, T];
 

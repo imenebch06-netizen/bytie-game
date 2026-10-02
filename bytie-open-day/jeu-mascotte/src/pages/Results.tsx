@@ -203,7 +203,7 @@ export default function Results() {
   // Analyse de fin de partie : générée par Gemini (via FastAPI) et dite par Bytie dans sa bulle
   useEffect(() => {
     const controller = new AbortController();
-    // la bulle précédente est déjà effacée par GameShell au changement de page
+
     say("comment", "Let me check how you did…", 0);
 
     fetchAIAnalysis(
@@ -216,7 +216,7 @@ export default function Results() {
       },
       controller.signal,
     )
-      // Pastille "AI · Gemini" seulement si le texte vient vraiment de l'IA (pas du commentaire local du serveur)
+
       .then(({ comment, source }) => say("comment", comment, 0, source === "gemini" ? "AI.ASSISTANT" : undefined))
       .catch(() => {
         if (controller.signal.aborted) return;
@@ -224,7 +224,7 @@ export default function Results() {
       });
 
     return () => controller.abort();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [zoomScore, connectionsScore, timelineScore, rank.title]);
 
   const handlePlayAgain = async () => {

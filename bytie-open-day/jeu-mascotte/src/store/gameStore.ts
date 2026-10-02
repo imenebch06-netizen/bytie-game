@@ -1,4 +1,4 @@
-// src/store/gameStore.ts
+
 import { create } from "zustand";
 import { fetchGameSession, resolveAssetUrl } from "../services/api";
 import type { ConnectionsGroup, TimelineEvent, TimelineRound, ZoomRound } from "../data/gamesData";

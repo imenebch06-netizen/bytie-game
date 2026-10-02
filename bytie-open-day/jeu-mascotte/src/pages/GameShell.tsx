@@ -34,11 +34,6 @@ const INTROS: Record<string, { step: number; rule: string; bytie: string }> = {
 };
 const TOTAL_GAMES = Object.keys(INTROS).length;
 
-/**
- * Pendant qu'un jeu SORT, AnimatePresence garde son ancien élément à l'écran.
- * Mais useOutlet() renvoie déjà le NOUVEAU jeu : sans précaution, on verrait le nouveau jeu sortir.
- * On "gèle" donc l'outlet au moment où le jeu est monté.
- */
 function FrozenOutlet() {
   const outlet = useOutlet();
   const [frozen] = useState(outlet);
@@ -125,11 +120,6 @@ function IntroCard({ step, title, rule, onSkip }: { step: number; title: string;
   );
 }
 
-/**
- * UNE seule instance de GameFrame pour tous les jeux (route parente /play).
- * Entre deux jeux : l'ancien jeu sort -> carte de présentation -> le nouveau jeu entre.
- * Le nouveau jeu n'est monté qu'APRÈS la carte : son chrono ne tourne donc pas pendant la présentation.
- */
 export default function GameShell() {
   const session = useGameStore((s) => s.session);
   const { bubble, thinking, hud, clear, setHud, say } = useShell();
@@ -140,27 +130,27 @@ export default function GameShell() {
   const [introducedKey, setIntroducedKey] = useState("");
   const showIntro = !!intro && introducedKey !== key;
 
-  // Au changement de jeu : on efface la bulle et l'en-tête de l'ancien, et Bytie annonce le suivant
+ 
   useEffect(() => {
     clear();
     setHud(null);
     if (intro) say("comment", intro.bytie, INTRO_MS);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [key]);
 
-  // Fin automatique de la présentation
+  
   useEffect(() => {
     if (!showIntro) return;
     const id = setTimeout(() => setIntroducedKey(key), INTRO_MS);
     return () => clearTimeout(id);
   }, [showIntro, key]);
 
-  // arrivée directe sur /play/... sans avoir cliqué sur Start : retour à l'accueil
+  
   if (!session) return <Navigate to="/" replace />;
 
   return (
     <GameFrame title={TITLES[key]} headerRight={hud} bubble={bubble} isThinking={thinking} panel>
-      {/* mode="wait" : l'ancien élément finit de sortir avant que le suivant n'entre */}
+      
       <AnimatePresence mode="wait">
         {showIntro && intro ? (
           <motion.div key={`intro-${key}`} className="flex flex-1 flex-col" exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>

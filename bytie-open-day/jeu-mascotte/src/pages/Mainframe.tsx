@@ -5,7 +5,7 @@ import Mascot from "../components/Bytie";
 import WaveBorder from "../components/WaveBorder";
 import "../styles/Mainframe.css";
 
-// Une seule séquence d'entrée : les éléments arrivent l'un après l'autre
+
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.12, delayChildren: 0.25 } } };
 const item = {
   hidden: { opacity: 0, y: 24 },

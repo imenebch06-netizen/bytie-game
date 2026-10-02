@@ -98,7 +98,7 @@ export default function GameFrame({
 
         {isResults ? (
           <div className="flex flex-1 flex-col items-center gap-6 py-2 md:flex-row md:items-center md:justify-center md:gap-8 lg:gap-12">
-            {/* Bytie et sa bulle (texte généré par l'IA) à gauche */}
+
             <div className="flex w-full shrink-0 flex-col items-center gap-4 md:w-72 lg:w-80">
               <div className="relative w-full">
                 <AnimatePresence mode="wait">
@@ -121,7 +121,7 @@ export default function GameFrame({
               </div>
             </div>
 
-            {/* Statistiques à droite */}
+        
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}

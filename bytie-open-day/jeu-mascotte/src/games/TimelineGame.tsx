@@ -112,14 +112,7 @@ export default function TimelineGame() {
   } as const;
 
   return (
-    // BUG CORRIGÉ : "justify-center" manquait sur ce conteneur flex-1. Sans elle,
-    // l'axe principal (vertical, à cause de flex-col) retombe sur l'alignement par
-    // défaut ("flex-start"), donc tout le contenu du jeu se collait en haut de la
-    // zone disponible au lieu d'être centré verticalement dans le cadre — c'est ce
-    // qui donnait l'impression que le jeu "tombait" vers le bas de la page / se
-    // retrouvait juste au-dessus de la vague de pied de page (le reste de l'espace
-    // vertical, non utilisé, se retrouvait après le contenu, jusqu'à la vague).
-    // "w-full" ajouté pour être cohérent avec les deux autres jeux (Zoom, Connections).
+    
     <div className="flex w-full flex-1 flex-col items-center justify-center gap-3">
       {/* Barre de temps */}
       {status === "playing" && (

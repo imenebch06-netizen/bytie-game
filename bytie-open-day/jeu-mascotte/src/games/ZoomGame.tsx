@@ -100,7 +100,7 @@ export default function ZoomGame() {
     setHintsUsed((n) => n + 1);
   }
 
-  // 🛡️ GARDE SÉCURITÉ : Affichage d'un loader si la session ou le round n'est pas prêt
+  //  GARDE SÉCURITÉ : Affichage d'un loader si la session ou le round n'est pas prêt
   if (error && !session) {
     return (
       <div className="flex w-full flex-1 flex-col items-center justify-center gap-4 px-6 text-center text-white">

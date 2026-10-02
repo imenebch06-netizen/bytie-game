@@ -1,7 +1,7 @@
 import math
 from typing import Optional, List
 
-# Configuration des barèmes (identique à scoring.ts)
+# Configuration des barèmes 
 SCORING = {
     "zoom": {
         "stage_points": [100, 80, 60, 40, 20],  #

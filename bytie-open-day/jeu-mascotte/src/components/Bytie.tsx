@@ -16,12 +16,7 @@ const loop = (duration: number, delay = 0): Transition => ({
   ease: "easeInOut",
 });
 
-/**
- * Pivot : fait tourner / grossir un groupe autour d'un point PRÉCIS.
- * Le <g> parent place le point (x, y), et un rectangle invisible et symétrique
- * centre la boîte de l'élément sur ce point -> l'origine de transformation
- * tombe toujours pile dessus (plus de tête ou de bras qui "décroche").
- */
+
 function Pivot({
   x,
   y,
@@ -83,37 +78,12 @@ const SPARKLES = [
   { x: 90, y: 40, s: 1, d: 2.8 },
 ];
 
-/*
- * MÉCANIQUE DES BRAS (v3) :
- *  - Les DEUX bras utilisent maintenant EXACTEMENT la même géométrie (épaule ->
- *    coude -> avant-bras -> main), juste positionnée à l'épaule gauche (138)
- *    ou droite (265). Avant, le bras gauche avait un dessin différent (baseline
- *    "levée") du bras droit (baseline "tombante") -> impossible à rendre
- *    identiques juste en ajustant des angles. Maintenant les deux mains sont
- *    pixel pour pixel la même forme -> "identiques" par construction.
- *  - Pivot ÉPAULE : position générale du bras.
- *      stable  : légèrement fixe (repos), IDENTIQUE pour les deux bras.
- *      waving  : (gauche seulement, Mainframe) grande rotation qui lève le bras,
- *                puis léger balancement autour de cette position levée.
- *      talking : PETITE oscillation autour du repos (mouvement discret).
- *  - Pivot COUDE (imbriqué) : articule l'avant-bras + la main.
- *      stable/waving : 0, immobile.
- *      talking : GRANDE oscillation (nettement plus ample que l'épaule) ->
- *                c'est le coude qui porte l'essentiel du mouvement de parole.
- */
+
 type Pose = "stable" | "waving" | "talking";
 
 const SHOULDER_REST = -8; // valeur de repos du bras DROIT (référence)
 
-// BUG CORRIGÉ : les deux bras partagent la même géométrie non-miroir (mêmes
-// coordonnées locales, juste replacées à une autre position d'épaule) -> pour
-// qu'ils paraissent EN MIROIR à l'écran, la rotation du bras gauche doit être
-// l'OPPOSÉ (signe inversé) de celle du bras droit. Avant, les deux utilisaient
-// exactement le même SHOULDER_REST (-8) : au lieu de pencher en miroir l'un
-// vers l'autre, les deux penchaient dans le MÊME sens en absolu -> une main
-// se rapprochait du corps pendant que l'autre s'en écartait (la "main gauche"
-// mal alignée que tu voyais). "waving" n'est pas concerné : c'est une pose
-// propre au bras gauche, déjà calculée indépendamment.
+
 const LEFT_SHOULDER_ROTATE: Record<Pose, number | number[]> = {
   stable: -SHOULDER_REST,
   waving: [162, 174, 162, 174, 162], // bras levé (repos + ~170°) puis léger balancement
@@ -125,13 +95,7 @@ const RIGHT_SHOULDER_ROTATE: Record<Pose, number | number[]> = {
   talking: [SHOULDER_REST, SHOULDER_REST - 6, SHOULDER_REST, SHOULDER_REST + 6, SHOULDER_REST], // phase opposée
 };
 
-// Coudes : au repos et en "waving" ils restent à 0 (immobiles) ; en "talking"
-// leur amplitude (±20°) est nettement supérieure à celle de l'épaule (±6°) :
-// c'est le coude qui fait le plus gros du mouvement quand Bytie parle.
-// Même correction de signe qu'au-dessus : géométrie non-miroir -> il faut
-// inverser le signe du bras gauche pour un geste visuellement symétrique.
-// Coudes : Flexion naturelle vers le torse (~85° max)
-// Bras gauche (angle positif = vers le centre du corps)
+
 const LEFT_ELBOW_ROTATE: Record<Pose, number | number[]> = {
   stable: 0,
   waving: 0,
@@ -152,7 +116,6 @@ function armTransition(target: number | number[], loopDuration: number): Transit
     : { duration: 0.6, ease: "easeOut" };
 }
 
-// Réglage de la durée à 1.8s pour un mouvement fluide et apaisé ("pas rapide")
 
 
 export default function Mascot({
@@ -292,10 +255,7 @@ export default function Mascot({
             </Pivot>
           </Pivot>
 
-          {/* BRAS DROIT : géométrie strictement identique au bras gauche (miroir
-              par la seule position de l'épaule, 265 au lieu de 138). Ne salue
-              jamais ; petit mouvement d'épaule + grand mouvement de coude
-              pendant que Bytie parle, comme le bras gauche mais en phase opposée. */}
+
           <Pivot x={265} y={240} animate={rightShoulderAnimate} transition={rightShoulderTransition}>
             <circle cx="0" cy="0" r="22" fill={g("body")} />
             <rect x="-13" y="0" width="26" height="80" rx="13" fill={g("body")} />

@@ -153,13 +153,7 @@ export default function ConnectionsGame() {
   } as const;
 
   return (
-    // BUG CORRIGÉ : "pt-6 sm:pt-10 pb-8" ajoutaient un padding vertical fixe et
-    // ASYMÉTRIQUE sur ce conteneur qui utilise déjà "justify-center" pour se
-    // centrer dans l'espace disponible. Un padding plus grand en bas qu'en haut
-    // décale mécaniquement le centre visuel du contenu vers le haut, en plus de
-    // réduire la hauteur réellement disponible pour le centrage. Supprimé au
-    // profit du seul "gap" entre les blocs, en laissant le flex parent gérer le
-    // centrage vertical réel.
+    
     <div className="flex w-full flex-1 flex-col items-center justify-center gap-8">
       <div className="flex w-full max-w-2xl flex-col gap-6">
         {/* Groupes déjà trouvés */}

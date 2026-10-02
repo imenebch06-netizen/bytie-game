@@ -1,8 +1,8 @@
-// src/services/api.ts
+
 export const API_ORIGIN = import.meta.env.VITE_API_ORIGIN ?? "http://localhost:8000";
 const API_URL = `${API_ORIGIN}/api/game`;
 
-/** Les images sont servies par FastAPI (/logos/...) : on construit l'URL absolue. */
+
 export const resolveAssetUrl = (path: string): string =>
   /^(https?:|data:|blob:)/.test(path) ? path : `${API_ORIGIN}${path.startsWith("/") ? "" : "/"}${path}`;
 
@@ -15,7 +15,7 @@ export const fetchGameSession = async () => {
       const body = await response.json();
       if (body?.detail) detail = String(body.detail);
     } catch {
-      /* corps non JSON : on garde le message par défaut */
+     
     }
     throw new Error(detail);
   }
@@ -42,7 +42,7 @@ export interface AIAnalysisPayload {
 
 export interface AIAnalysisResult {
   comment: string;
-  /** "gemini" = texte généré par l'IA ; "fallback" = texte local (IA indisponible) */
+  
   source: "gemini" | "fallback";
   model: string | null;
 }
